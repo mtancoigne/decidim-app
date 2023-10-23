@@ -2,6 +2,9 @@
 
 module Decidim
   module TranslatorConfigurationHelper
+    # FIXME: This method returns "true" or raises an exception, but never returns "false"
+    #        It may better be renamed as something like "check_seed_ability!", "enforce_seeding_ability!"
+    #        or anything more imperative.
     def self.able_to_seed?
       return true unless translator_activated?
 
