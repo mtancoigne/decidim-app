@@ -8,10 +8,11 @@ DECIDIM_BRANCH = "release/#{DECIDIM_VERSION}-stable".freeze
 ruby RUBY_VERSION
 
 # Core gems
-gem "decidim", "~> #{DECIDIM_VERSION}.0"
-gem "decidim-conferences", "~> #{DECIDIM_VERSION}.0"
-gem "decidim-initiatives", "~> #{DECIDIM_VERSION}.0"
-gem "decidim-templates", "~> #{DECIDIM_VERSION}.0"
+# gem "decidim", "~> #{DECIDIM_VERSION}.0"
+# gem "decidim-conferences", "~> #{DECIDIM_VERSION}.0"
+# gem "decidim-initiatives", "~> #{DECIDIM_VERSION}.0"
+# gem "decidim-templates", "~> #{DECIDIM_VERSION}.0"
+gem "decidim", git: "https://github.com/decidim/decidim.git", tag: "v0.27.4"
 
 # External Decidim gems
 gem "decidim-cache_cleaner"
