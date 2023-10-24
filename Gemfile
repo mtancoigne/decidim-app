@@ -49,6 +49,13 @@ gem "puma", ">= 5.5.1"
 gem "rack-attack", "~> 6.6"
 gem "sys-filesystem"
 
+# Gems to include for testing interdependence with other modules
+# Test suite should also be ran with ALL_GEMS=1
+# FIXME: This is not optimal at all
+if ENV.fetch "ALL_GEMS", false # rubocop:disable Style/IfUnlessModifier
+  gem "decidim-initiatives", "~> #{DECIDIM_VERSION}.0"
+end
+
 group :development do
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"

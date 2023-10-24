@@ -31,6 +31,17 @@ To replay failed tests, use the `--next-failure` flag.
 
 To generate code coverage, use the `SIMPLECOV=1` environment variable when starting tests.
 
+### Testing everything!
+
+As Decidim is an engine-based application, some code covers interactions with gems that are _not_ included by default.
+
+To be able to test these interactions, install all the gems and run the tests:
+
+```sh
+ALL_GEMS=1 bundle install # This will change the Gemfile.lock. Changes **MUST NOT** be committed
+ALL_GEMS=1 bundle exec rspec
+```
+
 ## Linters
 
 We use Rubocop to lint Ruby files:
