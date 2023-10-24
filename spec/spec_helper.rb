@@ -17,4 +17,8 @@ RSpec.configure do |config|
       social_share_button.allow_sites = %w(twitter facebook whatsapp_app whatsapp_web telegram)
     end
   end
+
+  config.after(:suite) do
+    puts "\nFaker random seed: #{Faker::Config.random.seed}"
+  end
 end
