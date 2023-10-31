@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserImporter
+  attr_reader :line_count, :csv
+
   def initialize(file, org, admin, process, auth_handler)
     @file = file
     @org = org
@@ -64,8 +66,8 @@ class UserImporter
     end
   end
 
-  def check_csv(file)
-    file.each do |row|
+  def check_csv
+    @csv.each do |row|
       # Check if id, first_name, last_name are nil
       next unless row[0].nil? || row[1].nil? || row[2].nil?
 
@@ -181,5 +183,12 @@ class UserImporter
 
   def current_process
     @current_process ||= Decidim::ParticipatoryProcess.find(@process)
+  end
+
+  def read_csv
+    @csv = CSV.read(@file, col_sep: ",", headers: true, skip_blanks: true)
+    @line_count = @csv.count
+
+    check_csv
   end
 end
