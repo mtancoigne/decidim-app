@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class UserImporter
+  def initialize(file, org, admin, process, auth_handler)
+    @file = file
+    @org = org
+    @admin = admin
+    @process = process
+    @auth_handler = auth_handler
+  end
+
   def validate_input
     validate_file
     validate_process

@@ -24,11 +24,8 @@ namespace :import do
                    end
 
     display_help unless ENV.fetch("FILE", nil) && ENV.fetch("ORG", nil) && ENV.fetch("ADMIN", nil) && ENV.fetch("PROCESS", nil)
-    @file = ENV.fetch("FILE", nil)
-    @org = ENV["ORG"].to_i
-    @admin = ENV["ADMIN"].to_i
-    @process = ENV["PROCESS"].to_i
-    @auth_handler = ENV.fetch("AUTH_HANDLER", nil)
+
+    importer = UserImporter.new ENV.fetch("FILE", nil), ENV["ORG"].to_i, ENV["ADMIN"].to_i, ENV["PROCESS"].to_i, ENV.fetch("AUTH_HANDLER", nil)
 
     validate_input
 
