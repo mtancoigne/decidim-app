@@ -3,12 +3,11 @@
 class UserImporter
   attr_reader :line_count, :csv
 
-  def initialize(file, org, admin, process, auth_handler)
+  def initialize(file, org, admin, process)
     @file = file
     @org = org
     @admin = admin
     @process = process
-    @auth_handler = auth_handler
   end
 
   def validate_input

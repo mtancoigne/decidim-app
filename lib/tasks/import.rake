@@ -23,7 +23,7 @@ namespace :import do
                      Logger.new("log/import-user-#{Time.zone.now.strftime "%Y-%m-%d-%H:%M:%S"}.log")
                    end
 
-    importer = UserImporter.new ENV.fetch("FILE", nil), ENV["ORG"].to_i, ENV["ADMIN"].to_i, ENV["PROCESS"].to_i, ENV.fetch("AUTH_HANDLER", nil)
+    importer = UserImporter.new ENV.fetch("FILE", nil), ENV["ORG"].to_i, ENV["ADMIN"].to_i, ENV["PROCESS"].to_i
     importer.validate_input
     importer.read_csv
 
