@@ -6,7 +6,7 @@ namespace :import do
   desc "Usage: rake import:user FILE='<filename.csv>' ORG=<organization_id> ADMIN=<admin_id> PROCESS=<process_id> [VERBOSE=true]'"
   # TODO: Add tests
   task user: :environment do
-    def display_help
+    unless ENV.fetch("FILE", nil) && ENV.fetch("ORG", nil) && ENV.fetch("ADMIN", nil) && ENV.fetch("PROCESS", nil)
       puts <<~HEREDOC
         Help:
         Usage: rake import:user FILE='<filename.csv>' ORG=<organization_id> ADMIN=<admin_id> PROCESS=<process_id>
@@ -22,8 +22,6 @@ namespace :import do
                    else
                      Logger.new("log/import-user-#{Time.zone.now.strftime "%Y-%m-%d-%H:%M:%S"}.log")
                    end
-
-    display_help unless ENV.fetch("FILE", nil) && ENV.fetch("ORG", nil) && ENV.fetch("ADMIN", nil) && ENV.fetch("PROCESS", nil)
 
     importer = UserImporter.new ENV.fetch("FILE", nil), ENV["ORG"].to_i, ENV["ADMIN"].to_i, ENV["PROCESS"].to_i, ENV.fetch("AUTH_HANDLER", nil)
 
