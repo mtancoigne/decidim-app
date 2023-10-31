@@ -6,6 +6,7 @@ class UserImporter
   def initialize(file, org, admin, process)
     @file = file
     @org = org
+    # FIXME: Rename variable and param as we check for an user, not an admin.
     @admin = admin
     @process = process
   end
@@ -146,6 +147,7 @@ class UserImporter
     )
     Decidim::Admin::CreateParticipatorySpacePrivateUser.call(form, current_user, current_process) do
       on(:ok) do |user|
+        debugger
         Decidim::Authorization.create_or_update_from(
           Decidim::AuthorizationHandler.handler_for(
             "osp_authorization_handler",
@@ -168,8 +170,9 @@ class UserImporter
     end
   end
 
+  # FIXME: Rename method as it's not a setter
   def set_name(first_name, last_name)
-    "#{first_name} #{last_name}"
+    "#{first_name&.strip} #{last_name&.strip}".strip
   end
 
   def current_user
