@@ -94,6 +94,6 @@ vendor/cache
 yarn-debug.log*
 .yarn-integrity
 .idea
-coverage/
+coverage*/
 public/sw.js*
 app/compiled_views/

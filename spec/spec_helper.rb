@@ -4,6 +4,9 @@ require "decidim/dev"
 Decidim::Dev.dummy_app_path = File.expand_path(Rails.root.to_s)
 require "decidim/dev/test/base_spec_helper"
 
+# Manually start SimpleCov early for a better coverage
+SimpleCov.start if ENV["SIMPLECOV"]
+
 Dir.glob("./spec/support/**/*.rb").each { |f| require f }
 
 RSpec.configure do |config|
@@ -16,5 +19,9 @@ RSpec.configure do |config|
     SocialShareButton.configure do |social_share_button|
       social_share_button.allow_sites = %w(twitter facebook whatsapp_app whatsapp_web telegram)
     end
+  end
+
+  config.after(:suite) do
+    puts "\nFaker random seed: #{Faker::Config.random.seed}"
   end
 end

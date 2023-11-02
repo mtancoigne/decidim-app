@@ -69,6 +69,12 @@ RSpec.describe Decidim::S3RetentionService do
     end
   end
 
+  describe "#execute" do
+    it "deletes older files" do
+      skip "setup needed: mock service results, then check files presence in a temp dir"
+    end
+  end
+
   describe "#service" do
     it "memoizes the storage service" do
       allow(Fog::Storage).to receive(:new).and_return("__success__")

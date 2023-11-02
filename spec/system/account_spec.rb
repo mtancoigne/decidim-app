@@ -13,4 +13,8 @@ describe "Registration", type: :system do
   end
 
   it_behaves_like "on/off account passwords"
+
+  # describe 'destroy from "account_controller_extends"' do
+  #   visit
+  # end
 end

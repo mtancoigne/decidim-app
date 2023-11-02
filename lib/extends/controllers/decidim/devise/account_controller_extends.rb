@@ -2,6 +2,8 @@
 
 module AccountControllerExtends
   def destroy
+    debugger
+
     enforce_permission_to :delete, :user, current_user: current_user
     @form = form(Decidim::DeleteAccountForm).from_params(params)
 
